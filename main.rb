@@ -11,7 +11,7 @@ class DiscussionWorkflow
   def add_participants_from_email(participants_email_string)
     return if participants_email_string.blank?
     participants_email_string.split.uniq.map do |email_address|
-      @participants << Users.get(email_address)
+      @participants << Users.get_by_email(email_address)
     end
   end
 
@@ -33,7 +33,7 @@ end
 
 
 discussion = Discussion.new(title: "fake", ...)
-host = User.find(42)
+host = User.find_by_id(42)
 participants = "fake1@example.com\nfake2@example.com\nfake3@example.com"
 
 workflow = DiscussionWorkflow.new(discussion, host, participants)
